@@ -1,0 +1,30 @@
+<aside class="w-64 bg-peach dark:bg-neutral-800 p-6">
+    <!-- App name -->
+    <div class="mb-10">
+        <h1 class="text-xl font-semibold tracking-wide">TrackFlux</h1>
+        <p class="text-xs text-neutral-500  dark:texgt-neutral-400">
+            Task Manager
+        </p>    
+    </div>
+
+    <!-- Navigation -->
+    <nav class="flex-1 space-y-2">
+        <a *ngFor="let item of navItems"
+            [routerLink]="item.route"
+            routerLinkActive="bg-softorange text-white"
+            [routerLinkActiveOptions]="{exact: true}"
+            class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm 
+            text-neutral-700 dark:text-neutral-200 hover:bg-softorange/80 hover:text-white
+            transition-all"
+        >
+            <span class="text-lg">{{ item.icon}}</span>
+            <span>{{item.label}}</span>
+        </a>
+    </nav>
+
+    <!-- Footer -->
+    <div class="pt-6 border-t border-neutral-200 dark: border-neutral-700 text-xs text-neutral-500 dark:text-neutral-400">
+        &#64; 2026 TrackFlux
+    </div>
+
+</aside>
