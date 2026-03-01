@@ -8,10 +8,12 @@ export const routes: Routes = [
     children: [
       {
         path: '',
+        pathMatch: 'full',
         loadComponent: () =>
           import('./features/dashboard/dashboard.component').then(
             (m) => m.DashboardComponent
           ),
+        data: { title: 'Dashboard'},
       },
       {
         path: 'tasks',
@@ -19,6 +21,7 @@ export const routes: Routes = [
           import('./features/tasks/task-list/task-list.component').then(
             (m) => m.TaskListComponent
           ),
+        data: { title: 'Tasks'},
       },
       {
         path: 'tasks/pending',
@@ -26,6 +29,7 @@ export const routes: Routes = [
           import('./features/tasks/task-list/task-list.component').then(
             (m) => m.TaskListComponent
           ),
+        data: { title: 'Pending Tasks'},
       },
       {
         path: 'tasks/completed',
@@ -33,6 +37,7 @@ export const routes: Routes = [
           import('./features/tasks/task-list/task-list.component').then(
             (m) => m.TaskListComponent
           ),
+        data: { title: 'Completed Tasks'},
       },
     ],
   },

@@ -1,30 +1,198 @@
-<aside class="w-64 bg-peach dark:bg-neutral-800 p-6">
-    <!-- App name -->
-    <div class="mb-10">
-        <h1 class="text-xl font-semibold tracking-wide">TrackFlux</h1>
-        <p class="text-xs text-neutral-500  dark:texgt-neutral-400">
-            Task Manager
-        </p>    
+<aside
+  class="group h-full bg-panel transition-width duration-300 ease-in-out"
+  [class.w-64]="!collapsed"
+  [class.w-16]="collapsed"
+>
+  <div class="flex h-full flex-col border-r border-border">
+    <!-- Header / Toggle -->
+<div class="flex items-center justify-between px-3 py-4">
+  <!-- Logo -->
+  <div class="flex items-center gap-2">
+    <!-- Logo icon (always visible) -->
+    <div
+      class="flex h-8 w-8 items-center justify-center rounded-lg bg-accent text-white font-bold"
+    >
+      T
     </div>
+
+    <!-- App name (only when expanded) -->
+    <span
+      class="text-text-primary font-semibold text-sm transition-all duration-200"
+      [class.opacity-0]="collapsed"
+      [class.w-0]="collapsed"
+      [class.overflow-hidden]="collapsed"
+    >
+      TrackFlux
+    </span>
+  </div>
+
+  <!-- Collapse button -->
+  <button
+    (click)="toggle.emit()"
+    class="rounded-md p-1 text-text-secondary hover:bg-surface hover:text-text-primary"
+  >
+    <svg
+      class="h-4 w-4 transition-transform duration-300"
+      [class.rotate-180]="collapsed"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+    >
+      <path d="M15 19l-7-7 7-7" />
+    </svg>
+  </button>
+</div>
 
     <!-- Navigation -->
-    <nav class="flex-1 space-y-2">
-        <a *ngFor="let item of navItems"
-            [routerLink]="item.route"
-            routerLinkActive="bg-softorange text-white"
-            [routerLinkActiveOptions]="{exact: true}"
-            class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm 
-            text-neutral-700 dark:text-neutral-200 hover:bg-softorange/80 hover:text-white
-            transition-all"
+    <nav class="flex-1 space-y-1">
+      <a
+        routerLink="/"
+        routerLinkActive="active-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class=" min-h-[40px] group relative flex items-center gap-3 rounded-md px-3 py-2 text-sm text-text-secondary hover:bg-surface hover:text-text-primary"
+      >
+        <!-- Active indicator -->
+        <span
+          class="absolute left-0 top-1/2 h-6 w-1 -translate-y-1/2 rounded-r bg-accent transition-opacity duration-300 opacity-0 group-[.active-link]:opacity-100"
+        ></span>
+
+        <span class="ml-2 transition-colors duration-200
+         group-[.active-link]:text-accent"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="size-6"
+          >
+            <path
+              d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.061l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06l8.69-8.689Z"
+            />
+            <path
+              d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z"
+            />
+          </svg>
+        </span>
+
+        <span
+          class="transition-opacity duration-200"
+          [class.opacity-0]="collapsed"
         >
-            <span class="text-lg">{{ item.icon}}</span>
-            <span>{{item.label}}</span>
-        </a>
+          Dashboard
+        </span>
+
+        <!-- Tooltip (only when collapsed) -->
+  <span
+    *ngIf="collapsed"
+    class="pointer-events-none absolute left-16 z-50 whitespace-nowrap rounded-md
+           bg-panel px-2 py-1 text-xs text-text-primary opacity-0 shadow-md
+           transition-opacity duration-200 group-hover:opacity-100"
+  >
+    Dashboard
+  </span>
+      </a>
+
+      <a
+        routerLink="/tasks"
+        routerLinkActive="active-link"
+        class="min-h-[40px] group relative flex items-center gap-3 rounded-md px-3 py-2 text-sm text-text-secondary hover:bg-surface hover:text-text-primary"
+      >
+        <span
+          class="absolute left-0 top-1/2 h-6 w-1 -translate-y-1/2 rounded-r bg-accent opacity-0 transition-opacity group-[.active-link]:opacity-100"
+        ></span>
+
+        <span class="ml-2 transition-colors duration-200
+         group-[.active-link]:text-accent"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="size-6"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </span>
+
+        <span
+          class="transition-opacity duration-200"
+          [class.opacity-0]="collapsed"
+        >
+          Tasks
+        </span>
+
+        <!-- Tooltip (only when collapsed) -->
+  <span
+    *ngIf="collapsed"
+    class="pointer-events-none absolute left-16 z-50 whitespace-nowrap rounded-md
+           bg-panel px-2 py-1 text-xs text-text-primary opacity-0 shadow-md
+           transition-opacity duration-200 group-hover:opacity-100"
+  >
+    Tasks
+  </span>
+      </a>
+
+      <a
+        routerLink="/settings"
+        routerLinkActive="active-link"
+        class="min-h-[40px] group relative flex items-center gap-3 rounded-md px-3 py-2 text-sm text-text-secondary hover:bg-surface hover:text-text-primary"
+      >
+        <span
+          class="absolute left-0 top-1/2 h-6 w-1 -translate-y-1/2 rounded-r bg-accent opacity-0 transition-opacity group-[.active-link]:opacity-100"
+        ></span>
+
+        <span class="ml-2 transition-colors duration-200
+         group-[.active-link]:text-accent">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+  <path fill-rule="evenodd" d="M11.078 2.25c-.917 0-1.699.663-1.85 1.567L9.05 4.889c-.02.12-.115.26-.297.348a7.493 7.493 0 0 0-.986.57c-.166.115-.334.126-.45.083L6.3 5.508a1.875 1.875 0 0 0-2.282.819l-.922 1.597a1.875 1.875 0 0 0 .432 2.385l.84.692c.095.078.17.229.154.43a7.598 7.598 0 0 0 0 1.139c.015.2-.059.352-.153.43l-.841.692a1.875 1.875 0 0 0-.432 2.385l.922 1.597a1.875 1.875 0 0 0 2.282.818l1.019-.382c.115-.043.283-.031.45.082.312.214.641.405.985.57.182.088.277.228.297.35l.178 1.071c.151.904.933 1.567 1.85 1.567h1.844c.916 0 1.699-.663 1.85-1.567l.178-1.072c.02-.12.114-.26.297-.349.344-.165.673-.356.985-.57.167-.114.335-.125.45-.082l1.02.382a1.875 1.875 0 0 0 2.28-.819l.923-1.597a1.875 1.875 0 0 0-.432-2.385l-.84-.692c-.095-.078-.17-.229-.154-.43a7.614 7.614 0 0 0 0-1.139c-.016-.2.059-.352.153-.43l.84-.692c.708-.582.891-1.59.433-2.385l-.922-1.597a1.875 1.875 0 0 0-2.282-.818l-1.02.382c-.114.043-.282.031-.449-.083a7.49 7.49 0 0 0-.985-.57c-.183-.087-.277-.227-.297-.348l-.179-1.072a1.875 1.875 0 0 0-1.85-1.567h-1.843ZM12 15.75a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5Z" clip-rule="evenodd" />
+</svg>
+
+        </span>
+
+        <span
+          class="transition-opacity duration-200"
+          [class.opacity-0]="collapsed"
+        >
+          Settings
+        </span>
+
+        <!-- Tooltip (only when collapsed) -->
+  <span
+    *ngIf="collapsed"
+    class="pointer-events-none absolute left-16 z-50 whitespace-nowrap rounded-md
+           bg-panel px-2 py-1 text-xs text-text-primary opacity-0 shadow-md
+           transition-opacity duration-200 group-hover:opacity-100"
+  >
+    Settings
+  </span>
+      </a>
     </nav>
 
-    <!-- Footer -->
-    <div class="pt-6 border-t border-neutral-200 dark: border-neutral-700 text-xs text-neutral-500 dark:text-neutral-400">
-        &#64; 2026 TrackFlux
-    </div>
+    <!-- User -->
+    <div class="px-2 pb-4">
+      <div
+        class="flex items-center gap-3 rounded-xl bg-surface px-3 py-2 transition-all duration-200 hover:bg-panel"
+        [class.justify-center]="collapsed"
+      >
+        <!-- Avatar -->
+        <div
+          class="h-9 w-9 rounded-full bg-accent-soft flex items-center justify-center text-accent font-semibold text-sm"
+        >
+          R
+        </div>
 
+        <!-- User info -->
+        <div
+          class="min-w-0 transition-opacity duration-200"
+          [class.opacity-0]="collapsed"
+        >
+          <p class="truncate text-sm font-medium text-text-primary">Rashmi</p>
+          <p class="truncate text-xs text-text-muted">Productive mode ✨</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </aside>

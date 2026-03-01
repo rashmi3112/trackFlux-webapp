@@ -9,9 +9,4 @@ import { CommonModule } from '@angular/common';
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
-  stats = [
-    { label: 'Total Tasks', value: 12, icon: '📝'},
-    { label: 'Completed', value: 5, icon: '✅'},
-    { label: 'Pending', value: 7, icon: '⏳'}
-  ]
 }

@@ -1,6 +1,23 @@
-<header class="h-16 bg-white dark:bg-neutral-800 border-b border-neutral-200 dark: border-neutral-700 px-6 flex items-center justify-between">
-    <h2 class="text-lg font-medium">Dashboard</h2>
-    <button class="bg-softorange text-white px-4 py-2 rounded-xl">
-        + Add Task
-    </button>
+<header class="h-14 flex items-center justify-between px-6 border-b bg-white dark:bg-neutral-900 border-gray-200 dark:border-neutral-800">
+    <!-- Page title -->
+    <h1 class="text-lg font-semibold text-gray-800 dark:text-gray-100">
+        {{ title$ | async }}
+    </h1>
+
+    <!-- Right actions -->
+    <div class="flex items-center gap-4">
+        <button *ngIf="(action$ | async) === 'add-task'"
+            class="flex items-center gap-2 rounded-lg bg-accent px-3 py-1.5 text-sm
+            font-medium text-black hover:bg-accent/90"
+        >
+            + Add Task
+        </button>
+
+        <button class="text-gray-500 hover:text-gray-700">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+  <path fill-rule="evenodd" d="M5.25 9a6.75 6.75 0 0 1 13.5 0v.75c0 2.123.8 4.057 2.118 5.52a.75.75 0 0 1-.297 1.206c-1.544.57-3.16.99-4.831 1.243a3.75 3.75 0 1 1-7.48 0 24.585 24.585 0 0 1-4.831-1.244.75.75 0 0 1-.298-1.205A8.217 8.217 0 0 0 5.25 9.75V9Zm4.502 8.9a2.25 2.25 0 1 0 4.496 0 25.057 25.057 0 0 1-4.496 0Z" clip-rule="evenodd" />
+</svg>
+
+        </button>
+    </div>
 </header>

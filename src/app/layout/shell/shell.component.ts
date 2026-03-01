@@ -1,15 +1,24 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from '../header/header.component';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { SidebarComponent } from '../sidebar/sidebar.component';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-shell',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, SidebarComponent],
+  imports: [RouterOutlet, SidebarComponent, HeaderComponent],
   templateUrl: './shell.component.html',
   styleUrl: './shell.component.css'
 })
 export class ShellComponent {
+  sidebarCollapsed = false;
+  sidebarHover = false;
 
+  toggleSidebar() {
+    this.sidebarCollapsed =!this.sidebarCollapsed;
+  }
+
+  get effectiveCollapsed() {
+    return this.sidebarCollapsed && !this.sidebarHover;
+  }
 }

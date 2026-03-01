@@ -1,3 +1,27 @@
-<div class="text-neutral-500 dark:text-neutral-400">
-    Task list coming soon...
+<div class="max-w-3xl px-6 py-6">
+    <ng-container *ngIf="tasks$ | async  as tasks; else loading">
+        <div *ngFor="let task of tasks"
+        class="group flex items-center gap-3 rounded-lg px-3 py-2 hover:bg-surface"
+        >
+            <input type="checkbox" [checked]="task.isCompleted" (change)="toggle(task)"
+            class="h-4 w-4 rounded border-border text-accent focus:ring-accent">
+        
+            <span class="flex-1 text-sm" [class.line-through]="task.isCompleted" [class.text-text.muted]="task.isCompleted">
+                {{task.title}}
+            </span>
+
+            <span class="h-2 w-2 rounded-full" [class.bg-success]="task.isCompleted" [class.bg-warning]="!task.isCompleted"
+            ></span>
+
+            <div *ngIf="tasks.length === 0" class="mt-12 text-center text-text-muted">
+                No tasks yet. Add one
+            </div>
+            
+        </div>
+    </ng-container>
+
+    <ng-template #loading>
+        <div class="text-center text-text-muted mt-8">
+        </div>
+    </ng-template>
 </div>
